@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>cgHtmlUtils</title>
+    <!-- Bootstrap Latest CDN compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="../dist/cgHtmlUtils.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>cgHtmlUtils examples</h2>
+        <p class="lead">This is goeland client side html utility functions examples page</p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">getEl('elementId') gives you a ref to that element id</h3>
+            </div>
+            <div class="panel-body">
+                <code>cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !'; </code>
+                <p>and the span with id aNiceSpan contains : </p>
+                <span id="aNiceSpan"></span>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">isNullOrUndefined(param1) returns true if param1 is not defined or null </h3>
+            </div>
+            <div class="panel-body">
+                <code>function f1(a,b,c){ <br>           
+                    &nbsp;console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))<br>
+                    &nbsp;console.log('b : ',b, cgHtmlUtils.isNullOrUndefined(b))<br>
+                    &nbsp;console.log('c : ',c , cgHtmlUtils.isNullOrUndefined(c))<br>
+                }<br>
+                f1('hello')<br>
+                </code>
+                <p>will give you at the console : </p>
+                a :  hello false<br>                
+                b :  undefined true<br>
+                c :  undefined true<br>                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !';
+                
+        function f1(a,b,c){            
+            console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))
+            console.log('b : ',b, cgHtmlUtils.isNullOrUndefined(b))
+            console.log('c : ',c , cgHtmlUtils.isNullOrUndefined(c))
+        }
+
+        f1('hello')
+
+
+    </script>
+</body>
+
+</html>
