@@ -1,12 +1,13 @@
 {
   "name": "cgil-html-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "goeland client side html utility functions",
   "main": "dist/cgHtmlUtils.min.js",
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "examples": "cd examples & python -m SimpleHTTPServer"
+    "prepublish": "npm run build",
+    "examples": "cd examples && python -m SimpleHTTPServer"
   },
   "repository": {
     "type": "git",
