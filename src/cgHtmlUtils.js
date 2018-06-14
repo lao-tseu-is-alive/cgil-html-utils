@@ -2,7 +2,7 @@
 /**
  * Created by cgil on 2/1/17.
  */
-// import {DEV} from './config'
+const DEV = process.env.NODE_ENV === 'development';
 export const getEl = (elemntId) => (document.getElementById(elemntId))
 export const isFunction = (f) => (typeof f === 'function')
 export const functionExist = (functionName) => ((typeof (functionName) !== 'undefined') && (functionName !== null))
@@ -14,10 +14,10 @@ export const isEmptyField = function (fieldId) {
 }
 
 export const addClass = function (elementId, cssClass) {
-  document.getElementById(elementId).className += ' ' + cssClass
+  getEl(elementId).className += ' ' + cssClass
 }
 export const delClass = function (elementId, cssClass) {
-  document.getElementById(elementId).className = document.getElementById(elementId).className.replace(cssClass, '').trim()
+  getEl(elementId).className = getEl(elementId).className.replace(cssClass, '').trim()
 }
 
 export const eventFire = function (el, etype) {
@@ -97,7 +97,7 @@ export const addImg = function (image, height, width, idElement) {
 // you can also use lodash https://lodash.com/docs/4.17.4#debounce
 export const debounce = function (fn, delay) {
   var timer = null
-  // console.log('## In debounce FUNCTION ')
+  if (DEV) console.log('## In debounce FUNCTION ')
   return function () {
     let context = this
     let args = arguments
@@ -112,7 +112,7 @@ export const throttle = function (fn, threshhold, scope) {
   threshhold || (threshhold = 250)
   let last
   let deferTimer
-  console.log('## In throttle FUNCTION ')
+  if (DEV) console.log('## In throttle FUNCTION ')
   return function () {
     var context = scope || this
     var now = +new Date()
@@ -129,4 +129,16 @@ export const throttle = function (fn, threshhold, scope) {
       fn.apply(context, args)
     }
   }
+}
+
+export const findByKeyValue = function (arrToSearch, keyName, keyValue) {
+  if (DEV) console.log(`## IN findByKeyValue searching : ${keyName}:${keyValue}`);
+  if (isNullOrUndefined(keyName) || isNullOrUndefined(keyValue)) {
+    console.error(`## ERROR in findByKeyValue the parameters keyName, keyValue should not be null or undefined ! ${keyName}:${keyValue}`);
+    return null;
+  }
+  for (let i = 0; i < arrToSearch.length; i++) {
+    if (arrToSearch[i][keyName] === keyValue) return arrToSearch[i];
+  }
+  return null;
 }

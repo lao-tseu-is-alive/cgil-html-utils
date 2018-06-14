@@ -3,3 +3,5 @@ examples
 test
 node_modules
 webpack.config.js
+.idea
+.gitignore
