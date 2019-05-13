@@ -33,7 +33,7 @@
                 <h3 class="panel-title">isNullOrUndefined(param1) returns true if param1 is not defined or null </h3>
             </div>
             <div class="panel-body">
-                <code>function f1(a,b,c){ <br>           
+                <code>function f1(a,b,c){ <br>
                     &nbsp;console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))<br>
                     &nbsp;console.log('b : ',b, cgHtmlUtils.isNullOrUndefined(b))<br>
                     &nbsp;console.log('c : ',c , cgHtmlUtils.isNullOrUndefined(c))<br>
@@ -41,16 +41,16 @@
                 f1('hello')<br>
                 </code>
                 <p>will give you at the console : </p>
-                a :  hello false<br>                
+                a :  hello false<br>
                 b :  undefined true<br>
-                c :  undefined true<br>                
+                c :  undefined true<br>
             </div>
         </div>
     </div>
     <script type="text/javascript">
         cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !';
-                
-        function f1(a,b,c){            
+
+        function f1(a,b,c){
             console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))
             console.log('b : ',b, cgHtmlUtils.isNullOrUndefined(b))
             console.log('c : ',c , cgHtmlUtils.isNullOrUndefined(c))
@@ -58,6 +58,7 @@
 
         f1('hello')
         console.log('dateIso2Fr(\'2018-08-21\') = ', cgHtmlUtils.dateIso2Fr('2018-08-21'))
+        console.log(cgHtmlUtils.getParams('https://gomakethings.com?sandwhich=chicken%20salad&bread=wheat&quant=3'));
 
 
     </script>
