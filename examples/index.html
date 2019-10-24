@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>cgHtmlUtils</title>
-    <!-- Bootstrap Latest CDN compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
         crossorigin="anonymous">
     <script src="cgHtmlUtils.min.js"></script>
+    <style>
+        .red {color: red}
+        .blue {color: blue}
+    </style>
 </head>
 
 <body>
@@ -48,7 +51,7 @@
         </div>
     </div>
     <script type="text/javascript">
-        cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !';
+        cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !<br>';
 
         function f1(a,b,c){
             console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))
@@ -59,7 +62,12 @@
         f1('hello')
         console.log('dateIso2Fr(\'2018-08-21\') = ', cgHtmlUtils.dateIso2Fr('2018-08-21'))
         console.log(cgHtmlUtils.getParams('https://gomakethings.com?sandwhich=chicken%20salad&bread=wheat&quant=3'));
+        const testString = 'j&#39;adore	&#64;ller &#224; l&#39;&#233;cole&#174; ->🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩';
 
+        console.log(testString)
+        const convertedString = cgHtmlUtils.convertEnt(testString)
+        cgHtmlUtils.getEl('aNiceSpan').innerHTML += convertedString
+        console.log(convertedString);
 
     </script>
 </body>

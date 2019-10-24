@@ -5,7 +5,9 @@
 const DEV = process.env.NODE_ENV === 'development';
 export const getEl = (elemntId) => (document.getElementById(elemntId))
 export const isFunction = (f) => (typeof f === 'function')
-export const functionExist = (functionName) => ((typeof (functionName) !== 'undefined') && (functionName !== null))
+export const functionExist = (functionName) => ((typeof (functionName) !== 'undefined')
+    && (functionName !== null)
+    && isFunction(functionName))
 export const isNullOrUndefined = (variable) => ((typeof (variable) === 'undefined') || (variable === null))
 export const isEmpty = (variable) => ((typeof (variable) === 'undefined') || (variable === null) || (variable === ''))
 export const isEmptyField = function (fieldId) {
@@ -65,6 +67,16 @@ export const unescapeHtml = function (safe) {
     .replace(/&#39;/g, "'")
   }
 }
+
+export const convertEnt = (text) => {
+  // if in need for more robust (unicode names): https://github.com/mathiasbynens/he
+  if (isNullOrUndefined(text)) return '';
+  let textFiltered = `${text}`.trim();
+  textFiltered = textFiltered.replace(/&#39;/g, '\'');
+  textFiltered = (`${text}`).replace(/&#\d+;/gm, s => String.fromCharCode(s.match(/\d+/gm)[0]));
+  // textFiltered = (`${text}`).replace(/&#x[1-9ABCDEF]+;/gm, s => String.fromCharCode(s.match(/\d+/gm)[0]));
+  return textFiltered;
+};
 
 export const getArrObjectsProperties = function (objectName) {
   let arr = []

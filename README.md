@@ -20,7 +20,7 @@ and use any function as usual, webpack will usually do the work
 cgHtmlUtils.getEl('mySpanid').innerHTML = "It work's ! "
 ```
 
-If you work with webpack 2, you can also import the ES2016 javascript source
+If you work with webpack, you can also import the ES2016 javascript source
 
 ```javascript
 import {isNullOrUndefined, debounce} from 'cgil-html-utils/src/cgHtmlUtils'

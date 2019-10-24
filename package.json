@@ -1,12 +1,14 @@
 {
   "name": "cgil-html-utils",
-  "version": "1.0.6",
-  "description": "goeland client side html utility functions",
+  "version": "1.0.7",
+  "description": "Goeland client side html utility functions",
   "main": "dist/cgHtmlUtils.min.js",
   "scripts": {
     "build": "webpack",
     "test": "jest",
-    "examples": "cd examples && python -m SimpleHTTPServer"
+    "test:watch": "jest --watchAll",
+    "examples": "cd examples && python -m SimpleHTTPServer",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -34,12 +36,14 @@
     ]
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-es2015": "^6.24.1",
-    "jest": "^24.8.0",
-    "on-build-webpack": "^0.1.0",
-    "webpack": "^3.12.0"
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@webpack-cli/init": "^0.2.2",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   }
 }
