@@ -1,6 +1,6 @@
 {
   "name": "cgil-html-utils",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Goeland client side html utility functions",
   "main": "dist/cgHtmlUtils.min.js",
   "scripts": {
@@ -26,24 +26,11 @@
     "url": "https://github.com/lao-tseu-is-alive/cgil-html-utils/issues"
   },
   "homepage": "https://github.com/lao-tseu-is-alive/cgil-html-utils#readme",
-  "jest": {
-    "verbose": true,
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "**/src/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/vendor/**"
-    ]
-  },
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "@webpack-cli/init": "^0.2.2",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.2"
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }

@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div id="container" class="container">
         <h2>cgHtmlUtils examples</h2>
         <p class="lead">This is goeland client side html utility functions examples page</p>
         <div class="panel panel-primary">
@@ -49,6 +49,11 @@
                 c :  undefined true<br>
             </div>
         </div>
+        <p class="lead">The next section was added at runtime with "addDiv", content comes from "get*Param" functions.<br>
+            <a href='?myinteger=1000&myfloat=2.3&mybool=true&name=l%27école%20"du"%20château<script>console.log(%27🅐🅑🅒🅓hello%27);</script>'>
+                try this link to experiment get*Param functions
+            </a>
+        </p>
     </div>
     <script type="text/javascript">
         cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !<br>';
@@ -68,6 +73,18 @@
         const convertedString = cgHtmlUtils.convertEnt(testString)
         cgHtmlUtils.getEl('aNiceSpan').innerHTML += convertedString
         console.log(convertedString);
+
+        cgHtmlUtils.addDiv('','params', 'container', 'panel panel-primary' );
+        cgHtmlUtils.addDiv('<h3 class="panel-title">parameter name is :</h3>','paramName', 'params', 'panel-heading' );
+        cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getStringParam('name','undefined')+'</p>','paramNameValue', 'params', 'panel-body' );
+
+        cgHtmlUtils.addDiv('','paramInteger', 'container', 'panel panel-primary' );
+        cgHtmlUtils.addDiv('<h3 class="panel-title">parameter myinteger is :</h3>','paramInt', 'paramInteger', 'panel-heading' );
+        cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getIntegerParam('myinteger',10)+'</p>','paramIntValue', 'paramInteger', 'panel-body' );
+
+        cgHtmlUtils.addDiv('','paramFloat', 'container', 'panel panel-primary' );
+        cgHtmlUtils.addDiv('<h3 class="panel-title">parameter myfloat is :</h3>','paramF', 'paramFloat', 'panel-heading' );
+        cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getFloatParam('myfloat',3.1415)+'</p>','paramFValue', 'paramFloat', 'panel-body' );
 
     </script>
 </body>

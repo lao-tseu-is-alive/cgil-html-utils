@@ -2,158 +2,209 @@
 /**
  * Created by cgil on 2/1/17.
  */
-const DEV = process.env.NODE_ENV === 'development';
-export const getEl = (elemntId) => (document.getElementById(elemntId))
-export const isFunction = (f) => (typeof f === 'function')
-export const functionExist = (functionName) => ((typeof (functionName) !== 'undefined')
-    && (functionName !== null)
-    && isFunction(functionName))
-export const isNullOrUndefined = (variable) => ((typeof (variable) === 'undefined') || (variable === null))
-export const isEmpty = (variable) => ((typeof (variable) === 'undefined') || (variable === null) || (variable === ''))
+const DEV = process.env.NODE_ENV === "development";
+export const getEl = (elemntId) => document.getElementById(elemntId);
+export const isFunction = (f) => typeof f === "function";
+export const functionExist = (functionName) =>
+    typeof functionName !== "undefined" &&
+    functionName !== null &&
+    isFunction(functionName);
+export const isNullOrUndefined = (variable) =>
+    typeof variable === "undefined" || variable === null;
+export const isEmpty = (variable) =>
+    typeof variable === "undefined" || variable === null || variable === "";
 export const isEmptyField = function (fieldId) {
-  const fieldValue = document.getElementById(fieldId).value
-  return (typeof (fieldValue) === 'undefined') || (fieldValue === null) || (fieldValue === '')
-}
+  const fieldValue = document.getElementById(fieldId).value;
+  return (
+      typeof fieldValue === "undefined" ||
+      fieldValue === null ||
+      fieldValue === ""
+  );
+};
 
 export const addClass = function (elementId, cssClass) {
-  getEl(elementId).className += ' ' + cssClass
-}
+  getEl(elementId).className += " " + cssClass;
+};
 export const delClass = function (elementId, cssClass) {
-  getEl(elementId).className = getEl(elementId).className.replace(cssClass, '').trim()
-}
+  getEl(elementId).className = getEl(elementId)
+      .className.replace(cssClass, "")
+      .trim();
+};
 
 export const eventFire = function (el, etype) {
   if (el.fireEvent) {
-    el.fireEvent('on' + etype)
+    el.fireEvent("on" + etype);
   } else {
-    let evObj = document.createEvent('Events')
-    evObj.initEvent(etype, true, false)
-    el.dispatchEvent(evObj)
+    let evObj = document.createEvent("Events");
+    evObj.initEvent(etype, true, false);
+    el.dispatchEvent(evObj);
   }
-}
+};
 export const dateIso2Fr = function (strIsoDate) {
   if (isEmpty(strIsoDate)) {
-    return null
+    return null;
   } else {
-    let y = null
-    let m = null
+    let y = null;
+    let m = null;
     let d = null;
-    [y, m, d] = strIsoDate.split('-')
-    return [d, m, y].join('-')
+    [y, m, d] = strIsoDate.split("-");
+    return [d, m, y].join("-");
   }
-}
+};
 
 export const dateFr2Iso = function (strddmmyyyy) {
   if (isEmpty(strddmmyyyy)) {
-    return null
+    return null;
   } else {
-    let y = null
-    let m = null
+    let y = null;
+    let m = null;
     let d = null;
-    [d, m, y] = strddmmyyyy.split('-')
-    return [y, m, d].join('-')
+    [d, m, y] = strddmmyyyy.split("-");
+    return [y, m, d].join("-");
   }
-}
+};
+
+export const escapeHtml = function (safe) {
+  if (isNullOrUndefined(safe)) {
+    return safe;
+  } else {
+    return safe
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+  }
+};
 
 export const unescapeHtml = function (safe) {
   if (isNullOrUndefined(safe)) {
-    return safe
+    return safe;
   } else {
-    return safe.replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#039;/g, "'")
-    .replace(/&#39;/g, "'")
+    return safe
+        .replace(/&amp;/g, "&")
+        .replace(/&lt;/g, "<")
+        .replace(/&gt;/g, ">")
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;/g, "'")
+        .replace(/&#039;/g, "'")
+        .replace(/&#39;/g, "'");
   }
-}
+};
+
 
 export const convertEnt = (text) => {
   // if in need for more robust (unicode names): https://github.com/mathiasbynens/he
-  if (isNullOrUndefined(text)) return '';
+  if (isNullOrUndefined(text)) return "";
   let textFiltered = `${text}`.trim();
-  textFiltered = textFiltered.replace(/&#39;/g, '\'');
-  textFiltered = (`${text}`).replace(/&#\d+;/gm, s => String.fromCharCode(s.match(/\d+/gm)[0]));
+  textFiltered = textFiltered.replace(/&#39;/g, "'");
+  textFiltered = `${text}`.replace(/&#\d+;/gm, (s) =>
+      String.fromCharCode(s.match(/\d+/gm)[0])
+  );
   // textFiltered = (`${text}`).replace(/&#x[1-9ABCDEF]+;/gm, s => String.fromCharCode(s.match(/\d+/gm)[0]));
   return textFiltered;
 };
 
 export const getArrObjectsProperties = function (objectName) {
-  let arr = []
+  let arr = [];
   for (let prop in objectName) {
     if (objectName.hasOwnProperty(prop)) {
       // (DEV) ? console.log(prop) : ''
-      arr.push(prop)
+      arr.push(prop);
     }
   }
-  return arr
-}
+  return arr;
+};
 
 export const dumpObject2String = function (objectName) {
-  let objDump = ''
-  const arrProp = getArrObjectsProperties(objectName)
-  objDump = arrProp.reduce((a, b) => (`${a}\n ${b}: ${objectName[b]}`))
-  return objDump
-}
+  let objDump = "";
+  const arrProp = getArrObjectsProperties(objectName);
+  objDump = arrProp.reduce((a, b) => `${a}\n ${b}: ${objectName[b]}`);
+  return objDump;
+};
 
 export const addImg = function (image, height, width, idElement) {
-  const elem = document.createElement('img')
-  elem.setAttribute('src', image)
-  elem.setAttribute('height', height)
-  elem.setAttribute('width', width)
-  elem.setAttribute('alt', 'logo')
-  document.getElementById(idElement).appendChild(elem)
-}
+  const elem = document.createElement("img");
+  elem.setAttribute("src", image);
+  elem.setAttribute("height", height);
+  elem.setAttribute("width", width);
+  elem.setAttribute("alt", "logo");
+  document.getElementById(idElement).appendChild(elem);
+};
+
+export const addDiv = function (
+    innerHtml,
+    id = null,
+    parentId = null,
+    className = null
+) {
+  const elem = document.createElement("div");
+  if (!isNullOrUndefined(id)) {
+    elem.setAttribute("id", id);
+  }
+  if (!isNullOrUndefined(className)) {
+    elem.setAttribute("class", className);
+  }
+  elem.innerHTML = innerHtml;
+  if (isNullOrUndefined(parentId)) {
+    document.body.append(elem);
+  } else {
+    document.getElementById(parentId).appendChild(elem);
+  }
+};
 
 // https://css-tricks.com/debouncing-throttling-explained-examples/
 // you can also use lodash https://lodash.com/docs/4.17.4#debounce
 export const debounce = function (fn, delay) {
-  var timer = null
-  if (DEV) console.log('## In debounce FUNCTION ')
+  var timer = null;
+  if (DEV) console.log("## In debounce FUNCTION ");
   return function () {
-    let context = this
-    let args = arguments
-    clearTimeout(timer)
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer);
     timer = setTimeout(function () {
-      fn.apply(context, args)
-    }, delay)
-  }
-}
+      fn.apply(context, args);
+    }, delay);
+  };
+};
 
 export const throttle = function (fn, threshhold, scope) {
-  threshhold || (threshhold = 250)
-  let last
-  let deferTimer
-  if (DEV) console.log('## In throttle FUNCTION ')
+  threshhold || (threshhold = 250);
+  let last;
+  let deferTimer;
+  if (DEV) console.log("## In throttle FUNCTION ");
   return function () {
-    var context = scope || this
-    var now = +new Date()
-    let args = arguments
+    var context = scope || this;
+    var now = +new Date();
+    let args = arguments;
     if (last && now < last + threshhold) {
       // hold on to it
-      clearTimeout(deferTimer)
+      clearTimeout(deferTimer);
       deferTimer = setTimeout(function () {
-        last = now
-        fn.apply(context, args)
-      }, threshhold)
+        last = now;
+        fn.apply(context, args);
+      }, threshhold);
     } else {
-      last = now
-      fn.apply(context, args)
+      last = now;
+      fn.apply(context, args);
     }
-  }
-}
+  };
+};
 
 export const findByKeyValue = function (arrToSearch, keyName, keyValue) {
-  if (DEV) console.log(`## IN findByKeyValue searching : ${keyName}:${keyValue}`);
+  if (DEV)
+    console.log(`## IN findByKeyValue searching : ${keyName}:${keyValue}`);
   if (isNullOrUndefined(keyName) || isNullOrUndefined(keyValue)) {
-    console.error(`## ERROR in findByKeyValue the parameters keyName, keyValue should not be null or undefined ! ${keyName}:${keyValue}`);
+    console.error(
+        `## ERROR in findByKeyValue the parameters keyName, keyValue should not be null or undefined ! ${keyName}:${keyValue}`
+    );
     return null;
   }
   for (let i = 0; i < arrToSearch.length; i++) {
     if (arrToSearch[i][keyName] === keyValue) return arrToSearch[i];
   }
   return null;
-}
+};
 
 /**
  * Get the URL parameters
@@ -162,14 +213,81 @@ export const findByKeyValue = function (arrToSearch, keyName, keyValue) {
  * @return {Object}     The URL parameters
  */
 export const getParams = function (url) {
-	let params = {};
-	let parser = document.createElement('a');
-	parser.href = url;
-	const query = parser.search.substring(1);
-	const vars = query.split('&');
-	for (let i = 0; i < vars.length; i++) {
-		const pair = vars[i].split('=');
-		params[pair[0]] = decodeURIComponent(pair[1]);
-	}
-	return params;
+  let params = {};
+  let parser = document.createElement("a");
+  parser.href = url;
+  const query = parser.search.substring(1);
+  const vars = query.split("&");
+  for (let i = 0; i < vars.length; i++) {
+    const pair = vars[i].split("=");
+    params[pair[0]] = decodeURIComponent(pair[1]);
+  }
+  return params;
+};
+
+export const getFloatParam = (paramName, defaultValue = 0.0) => {
+  // https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search
+  // substring(1) to drop the leading "?"
+  const uri = window.location.search.substring(1);
+  // https://github.com/jerrybendy/url-search-params-polyfill is a bit too long...
+  let params = null;
+  if (isNullOrUndefined(window.URLSearchParams)) {
+    params = getParams(uri);
+  } else {
+    params = new URLSearchParams(uri);
+  }
+
+  const value = parseFloat(params.get(paramName), 10);
+  if (Number.isNaN(value)) {
+    return defaultValue;
+  }
+  return value;
+};
+
+export const getIntegerParam = (paramName, defaultValue = 0) => {
+  const uri = window.location.search.substring(1);
+  let params = null;
+  if (isNullOrUndefined(window.URLSearchParams)) {
+    params = getParams(uri);
+  } else {
+    params = new URLSearchParams(uri);
+  }
+  const value = parseInt(params.get(paramName), 10);
+  if (Number.isNaN(value)) {
+    return defaultValue;
+  }
+  return value;
+};
+
+export const getBoolParam = (paramName, defaultValue = false) => {
+  const uri = window.location.search.substring(1);
+  let params = null;
+  if (isNullOrUndefined(window.URLSearchParams)) {
+    params = getParams(uri);
+  } else {
+    params = new URLSearchParams(uri);
+  }
+  const value = params.get(paramName);
+  if (isNullOrUndefined(value)) {
+    return defaultValue;
+  }
+  if (value === "true") {
+    return true;
+  }
+  return false;
+};
+
+export const getStringParam = (paramName, defaultValue = '') => {
+  const uri = window.location.search.substring(1);
+  let params = null;
+  if (isNullOrUndefined(window.URLSearchParams)) {
+    params = getParams(uri);
+  } else {
+    params = new URLSearchParams(uri);
+  }
+  const value = params.get(paramName);
+  if (isNullOrUndefined(value)) {
+    return defaultValue;
+  }
+  return escapeHtml(value);
 };
