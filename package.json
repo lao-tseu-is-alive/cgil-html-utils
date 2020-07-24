@@ -1,6 +1,6 @@
 {
   "name": "cgil-html-utils",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Goeland client side html utility functions",
   "main": "dist/cgHtmlUtils.min.js",
   "scripts": {
