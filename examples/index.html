@@ -74,6 +74,11 @@
         cgHtmlUtils.getEl('aNiceSpan').innerHTML += convertedString
         console.log(convertedString);
 
+        const accentTest = `Il était parti au château de Saint-François.
+        Après cet été son intérêt pour ce "bâtiment" fut sans relâche`;
+        const unAccentTest = cgHtmlUtils.removePunctuation(cgHtmlUtils.removeDiacritics(accentTest));
+        console.log(unAccentTest)
+
         cgHtmlUtils.addDiv('','params', 'container', 'panel panel-primary' );
         cgHtmlUtils.addDiv('<h3 class="panel-title">parameter name is :</h3>','paramName', 'params', 'panel-heading' );
         cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getStringParam('name','undefined')+'</p>','paramNameValue', 'params', 'panel-body' );
