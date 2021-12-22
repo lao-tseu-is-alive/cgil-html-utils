@@ -1,36 +1,57 @@
 {
   "name": "cgil-html-utils",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Goeland client side html utility functions",
-  "main": "dist/cgHtmlUtils.min.js",
+  "main": "dist/cgilHtmlUtils.cjs.js",
+  "module": "dist/cgilHtmlUtils.esm.js",
+  "browser": "dist/cgilHtmlUtils.umd.js",
+  "types": "dist/cgilHtmlUtils.d.ts",
+  "files": [
+    "/dist",
+    "/examples",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "build": "webpack",
+    "clean": "rm -rf dist/*",
+    "dev": "rollup -c -w",
+    "docs": "typedoc --tsconfig ./tsconfig.json --out docs src",
+    "prebuild": "npm run clean",
+    "build": "rollup -c",
+    "examples": "python -m SimpleHTTPServer",
     "test": "jest",
-    "test:watch": "jest --watchAll",
-    "examples": "cd examples && python -m SimpleHTTPServer",
-    "start": "webpack-dev-server"
+    "test:watch": "jest --watchAll"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lao-tseu-is-alive/cgil-html-utils.git"
   },
   "keywords": [
-    "goeland",
+    "cgilHtmlUtils",
     "javascript",
-    "html",
-    "utils"
+    "rollup",
+    "typescript"
   ],
-  "author": "CGil",
+  "author": "CGil<lao.tseu.is.alive@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/lao-tseu-is-alive/cgil-html-utils/issues"
   },
   "homepage": "https://github.com/lao-tseu-is-alive/cgil-html-utils#readme",
   "devDependencies": {
-    "@babel/core": "^7.10.5",
-    "@babel/preset-env": "^7.10.4",
-    "babel-loader": "^8.1.0",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "eslint": "^8.5.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "jest": "^27.4.5",
+    "rollup": "^2.61.1",
+    "rollup-plugin-dts": "^4.0.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "ts-jest": "^27.1.2",
+    "tslib": "^2.3.1",
+    "typedoc": "^0.22.10",
+    "typescript": "^4.5.4"
   }
 }

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>cgHtmlUtils:debounce</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="../dist/cgilHtmlUtils.umd.js"></script>
+    <style>
+        .red {color: red}
+        .blue {color: blue}
+        #movearea {
+          background: aqua;
+          height: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <h2>cgHtmlUtils debounce</h2>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">debounce will 'group' numerous call to fn if the calls occurs in delay interval parameter</h3>
+            </div>
+            <div class="panel-body">
+                <code>elMouseMoveArea.addEventListener('mousemove',cgHtmlUtils.debounce(posMouseDebounce, 500));</code>
+                <p>see how the mouse position is not updated as often with debounce (must be 500ms delay) </p>
+              <div>
+                Debounce Mouse Move Handler Pos info : <span id="infoDebounce"></span>
+              </div>
+              <div>
+                Normal Mouse Move Handler Pos info   : <span id="infoNormal"></span>
+              </div>
+            </div>
+        </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">move your mouse on the above area</h3>
+        </div>
+        <div id="movearea" class="panel-body" >
+        </div>
+      </div>
+
+    </div>
+    <script type="text/javascript">
+        const elInfoNormal = cgHtmlUtils.getEl('infoNormal');
+        const elInfoDebounce = cgHtmlUtils.getEl('infoDebounce');
+        const elMouseMoveArea = cgHtmlUtils.getEl('movearea');
+
+        const posMouseDebounce = (evt) => {
+          console.log(`posMouseDebounce ${evt}`)
+          x = evt.offsetX;
+          y = evt.offsetY;
+          const msg = `x:${x}, y:${y}`
+          elInfoDebounce.innerHTML = msg
+        }
+
+        const posMouseNormal = (evt) => {
+          console.log(`posMouseNormal ${evt}`)
+          x = evt.offsetX;
+          y = evt.offsetY;
+          const msg = `x:${x}, y:${y}`
+          elInfoNormal.innerHTML = msg
+        }
+
+        elMouseMoveArea.addEventListener('mousemove',posMouseNormal);
+        elMouseMoveArea.addEventListener('mousemove',cgHtmlUtils.debounce(posMouseDebounce, 150));
+
+
+    </script>
+</body>
+
+</html>
