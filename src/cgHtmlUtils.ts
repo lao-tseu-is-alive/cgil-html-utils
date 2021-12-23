@@ -325,13 +325,14 @@ export const throttle = (fn: Function, threshhold = 250, ...args: any[]) => {
   };
 };
 
-export const findByKeyValue = (arrToSearch: Object[], keyName: keyof Object, keyValue: any) => {
+export const findByKeyValue = (arrToSearch: Object[], keyName: string, keyValue: any) => {
   if (isNullOrUndefined(keyName) || isNullOrUndefined(keyValue)) {
     console.error(`## ERROR in findByKeyValue : keyName, keyValue should not be null or undefined ! ${keyName}:${keyValue}`);
     return null;
   }
   // eslint-disable-next-line no-plusplus
   for (let i = 0; i < arrToSearch.length; i++) {
+    // @ts-ignore
     if (arrToSearch[i][keyName] === keyValue) return arrToSearch[i];
   }
   return null;
@@ -363,7 +364,7 @@ export const getParams = function (url: string): Object {
  * @param paramName
  * @param defaultValue is used to return a valid float value if paramName was not valid
  */
-export const getFloatParam = (paramName: keyof Object, defaultValue = 0.0): number => {
+export const getFloatParam = (paramName: string, defaultValue = 0.0): number => {
   // https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search
   // substring(1) to drop the leading "?"
   const uri = window.location.search.substring(1);
@@ -388,7 +389,7 @@ export const getFloatParam = (paramName: keyof Object, defaultValue = 0.0): numb
  * @param paramName
  * @param defaultValue is used to return a valid int value if paramName was not valid
  */
-export const getIntegerParam = (paramName: keyof Object, defaultValue = 0): number => {
+export const getIntegerParam = (paramName: string, defaultValue = 0): number => {
   const uri = window.location.search.substring(1);
   let value = null;
   if (isNullOrUndefined(window.URLSearchParams)) {
@@ -410,12 +411,14 @@ export const getIntegerParam = (paramName: keyof Object, defaultValue = 0): numb
  * @param paramName
  * @param defaultValue
  */
-export const getStringParam = (paramName: keyof Object, defaultValue = ''): string => {
+export const getStringParam = (paramName: string, defaultValue = ''): string => {
   const uri = window.location.search.substring(1);
   let value: string | null;
   if (isNullOrUndefined(window.URLSearchParams)) {
     const params = getParams(uri);
+    // @ts-ignore
     if (isNullOrUndefined(params[paramName])) return defaultValue;
+    // @ts-ignore
     value = `${params[paramName]}`;
   } else {
     const params = new URLSearchParams(uri);
@@ -436,7 +439,7 @@ export const getStringParam = (paramName: keyof Object, defaultValue = ''): stri
  * @param paramName
  * @param defaultValue is used to return a valid bool value if paramName was not valid
  */
-export const getBoolParam = (paramName: keyof Object, defaultValue = false): boolean => {
+export const getBoolParam = (paramName: string, defaultValue = false): boolean => {
   const value = getStringParam(paramName, '');
   if (value === '') {
     return defaultValue;
