@@ -15,7 +15,7 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "dev": "rollup -c -w",
-    "docs": "typedoc --tsconfig ./tsconfig.json --out docs src",
+    "docs": "typedoc --tsconfig ./tsconfig.json --out docs src/cgHtmlUtils.ts",
     "prebuild": "npm run clean",
     "build": "rollup -c",
     "examples": "python -m SimpleHTTPServer",

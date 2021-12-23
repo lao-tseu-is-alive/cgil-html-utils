@@ -1,5 +1,6 @@
 /**
  * Created by cgil on 2017-01-02.
+ *
  * v.2.0.0 : Migration to TypeScript on 2021-12-21.
  */
 
@@ -272,37 +273,6 @@ export const addDiv = function (
   parentEl.appendChild(elem);
   return true;
 };
-
-/*
-export const debounce2 = (fn: Function, delay: number, ...args: any[]): Function => {
-  let timer: ReturnType<typeof setTimeout>;
-  return () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn(...args), delay);
-  };
-};
-// eslint-disable-next-line max-len,no-unused-vars
-export const debounce =
-function <A = unknown, R = void> (fn: (args: A) => R, delay: number):
- [(args: A) => Promise<R>, () => void] {
-  let timer: ReturnType<typeof setTimeout>;
-
-  const debouncedFunc = (args: A): Promise<R> => new Promise((resolve) => {
-    if (timer) {
-      clearTimeout(timer);
-    }
-
-    timer = setTimeout(() => {
-      resolve(fn(args));
-    }, delay);
-  });
-
-  const teardown = () => clearTimeout(timer);
-
-  return [debouncedFunc, teardown];
-};
-
- */
 
 /**
  * will 'group' numerous call to fn if the calls occurs in delay interval parameter
