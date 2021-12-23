@@ -3,6 +3,13 @@
  *
  * v.2.0.0 : Migration to TypeScript on 2021-12-21.
  */
+// eslint-disable-next-line import/extensions,import/no-unresolved
+import { LIB_VERSION } from './version';
+
+/**
+ * version of the library
+ */
+export const version = LIB_VERSION;
 
 /**
  * returns the Html Element that have the corresponding elementId

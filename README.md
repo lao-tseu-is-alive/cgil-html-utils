@@ -1,5 +1,9 @@
 # cgil-html-utils
-goeland client side html utility functions
+Goeland client side html utility functions
+
+* [Documentation](https://lao-tseu-is-alive.github.io/cgil-html-utils/docs/)
+* [Examples](https://lao-tseu-is-alive.github.io/cgil-html-utils/examples/)
+* [Github Project](https://github.com/lao-tseu-is-alive/cgil-html-utils)
 
 ## Getting Started
 
@@ -29,3 +33,7 @@ this way webpack or parcel  will be able to do tree-shaking getting only the fun
 and your final bundle will be much smaller !
 
 https://webpack.js.org/guides/tree-shaking/
+
+## Documentation
+[documentation is available in docs subdirectory](https://lao-tseu-is-alive.github.io/cgil-html-utils/docs/)
+generated from jsdoc source code with the excellent [TypeDoc](http://typedoc.org/) ! 

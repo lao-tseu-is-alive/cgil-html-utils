@@ -105,3 +105,4 @@ dist
 
 # jetbrains ide
 .idea
+/src/version.ts
