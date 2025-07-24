@@ -1,7 +1,7 @@
 # cgil-html-utils
 A lightweight TypeScript utility library for HTML and DOM manipulation.
 
-* [Documentation](https://lao-tseu-is-alive.github.io/cg-html-utils/docs/)
+* [Documentation](https://lao-tseu-is-alive.github.io/cgil-html-utils/)
 * [Examples](https://lao-tseu-is-alive.github.io/cg-html-utils/examples/)
 
 ## Getting Started
