@@ -1,39 +1,71 @@
-# cgil-html-utils
-Goeland client side html utility functions
+# cg-html-utils
+A lightweight TypeScript utility library for HTML and DOM manipulation.
 
-* [Documentation](https://lao-tseu-is-alive.github.io/cgil-html-utils/docs/)
-* [Examples](https://lao-tseu-is-alive.github.io/cgil-html-utils/examples/)
-* [Github Project](https://github.com/lao-tseu-is-alive/cgil-html-utils)
+* [Documentation](https://lao-tseu-is-alive.github.io/cg-html-utils/docs/)
+* [Examples](https://lao-tseu-is-alive.github.io/cg-html-utils/examples/)
 
 ## Getting Started
 
-Install `cgil-html-utils` in the shell
+Install `cg-html-utils` via npm:
 
 ```bash
-npm i -P cgil-html-utils
+npm install cg-html-utils
 ```
-Then to import all functions  from the library just use this line in your code
+
+### Importing the Library
+
+To import all functions from the library, use:
 
 ```javascript
-import * as cgHtmlUtils from 'cgil-html-utils'
+import * as cgHtmlUtils from 'cg-html-utils';
 ```
 
-and use any function as usual.
+Then use any function as needed:
 
 ```javascript
-cgHtmlUtils.getEl('mySpanid').innerHTML = "It work's ! "
+cgHtmlUtils.getEl('mySpanId').innerHTML = "It works!";
 ```
 
-If you work with a bundler like webpack, you can also import only what you neeed.
+For modern bundlers like Vite, Webpack, or Parcel, you can import specific functions to enable tree-shaking, reducing bundle size:
 
 ```javascript
-import { isNullOrUndefined, debounce} from 'cgil-html-utils/src/cgHtmlUtils'
+import { isNullOrUndefined, debounce } from 'cg-html-utils';
 ```
-this way webpack or parcel  will be able to do tree-shaking getting only the functions you are using, 
-and your final bundle will be much smaller !
 
-https://webpack.js.org/guides/tree-shaking/
+Learn more about tree-shaking: [Webpack Tree Shaking Guide](https://webpack.js.org/guides/tree-shaking/)
+
+### Browser Usage (UMD)
+
+If you're using the library directly in a browser, include the UMD bundle:
+
+```html
+<script src="path/to/cg-html-utils/dist/cgHtmlUtils.umd.js"></script>
+<script>
+  CgHtmlUtils.getEl('mySpanId').innerHTML = "It works!";
+</script>
+```
 
 ## Documentation
-[documentation is available in docs subdirectory](https://lao-tseu-is-alive.github.io/cgil-html-utils/docs/)
-generated from jsdoc source code with the excellent [TypeDoc](http://typedoc.org/) ! 
+
+Comprehensive documentation is generated from JSDoc comments using [TypeDoc](https://typedoc.org/) and is available in the [docs subdirectory](https://lao-tseu-is-alive.github.io/cg-html-utils/docs/).
+
+## Features
+
+- Lightweight utilities for DOM manipulation, event handling, and string processing.
+- TypeScript support with type definitions.
+- Compatible with modern browsers and Node.js environments.
+- Supports ES modules and UMD formats for flexible usage.
+- Tree-shaking support for optimized bundle sizes.
+
+## Development
+
+To build the library and generate documentation:
+
+```bash
+npm run build  # Builds UMD, ES modules, and TypeScript declarations
+npm run docs   # Generates documentation in the docs folder
+```
+
+## License
+
+MIT

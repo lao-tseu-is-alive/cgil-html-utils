@@ -1,11 +1,11 @@
 {
   "name": "cgil-html-utils",
-  "version": "2.0.4",
-  "description": "Goeland client side html utility functions",
-  "main": "dist/cgilHtmlUtils.cjs.js",
-  "module": "dist/cgilHtmlUtils.esm.js",
-  "browser": "dist/cgilHtmlUtils.umd.js",
-  "types": "dist/cgilHtmlUtils.d.ts",
+  "version": "2.1.0",
+  "description": "A utility library for HTML and DOM manipulation",
+  "main": "dist/cgHtmlUtils.umd.js",
+  "module": "dist/cgHtmlUtils.esm.js",
+  "types": "dist/cgHtmlUtils.d.ts",
+  "type": "module",
   "files": [
     "/dist",
     "/examples",
@@ -13,13 +13,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "dev": "rollup -c -w",
-    "docs": "typedoc --tsconfig ./tsconfig.json --out docs src/cgHtmlUtils.ts",
+    "build": "vite build",
     "genver": "node -p \"'export const LIB_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
     "prebuild": "npm run clean && npm run genver",
-    "build": "rollup -c",
-    "examples": "python -m SimpleHTTPServer",
+    "docs": "typedoc --out docs src/cgHtmlUtils.ts",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist docs",
+    "prepublishOnly": "npm run lint && npm run build && npm run docs",
     "test": "jest",
     "test:watch": "jest --watchAll"
   },
@@ -28,9 +28,9 @@
     "url": "git+https://github.com/lao-tseu-is-alive/cgil-html-utils.git"
   },
   "keywords": [
-    "cgilHtmlUtils",
-    "javascript",
-    "rollup",
+    "html",
+    "dom",
+    "utils",
     "typescript"
   ],
   "author": "CGil<lao.tseu.is.alive@gmail.com>",
@@ -40,20 +40,24 @@
   },
   "homepage": "https://github.com/lao-tseu-is-alive/cgil-html-utils#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.7.0",
-    "@typescript-eslint/parser": "^5.7.0",
-    "marked": ">=4.0.10",
-    "eslint": "^8.5.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.3",
-    "jest": "^27.4.5",
-    "rollup": "^3.29.5",
-    "rollup-plugin-dts": "^4.0.1",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript": "^1.0.1",
-    "ts-jest": "^27.1.2",
-    "tslib": "^2.3.1",
-    "typedoc": "^0.22.10",
-    "typescript": "^4.5.4"
-  }
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "eslint": "^9.12.0",
+    "typescript": "^5.6.2",
+    "typedoc": "^0.27.0",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.3"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/cgHtmlUtils.esm.js",
+      "require": "./dist/cgHtmlUtils.umd.js",
+      "types": "./dist/cgHtmlUtils.d.ts"
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

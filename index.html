@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>cgHtmlUtils</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="../dist/cgilHtmlUtils.umd.js"></script>
+    <style>
+        .red {color: red}
+        .blue {color: blue}
+    </style>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <h2>cgHtmlUtils examples</h2>
+        <p class="lead">This is goeland client side html utility functions examples page</p>
+      <p>See also the <a href="debounce_throttle.html">debounce example </a></p>
+      <p>Documentation is available in <a href="../docs/">docs directory</a></p>
+      <p>Back To the <a href="https://github.com/lao-tseu-is-alive/cgil-html-utils">github home of this project</a></p>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">getEl('elementId') gives you a ref to that element id</h3>
+            </div>
+            <div class="panel-body">
+                <code>cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !'; </code>
+                <p>and the span with id aNiceSpan contains : </p>
+                <span id="aNiceSpan"></span>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">isNullOrUndefined(param1) returns true if param1 is not defined or null </h3>
+            </div>
+            <div class="panel-body">
+                <code>function f1(a,b,c){ <br>
+                    &nbsp;console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))<br>
+                    &nbsp;console.log('b : ',b, cgHtmlUtils.isNullOrUndefined(b))<br>
+                    &nbsp;console.log('c : ',c , cgHtmlUtils.isNullOrUndefined(c))<br>
+                }<br>
+                f1('hello')<br>
+                </code>
+                <p>will give you at the console : </p>
+                a :  hello false<br>
+                b :  undefined true<br>
+                c :  undefined true<br>
+            </div>
+        </div>
+        <p class="lead">The next section was added at runtime with "addDiv", content comes from "get*Param" functions.<br>
+            <a href='?myinteger=1000&myfloat=2.3&mybool=true&name=l%27école%20"du"%20château<script>console.log(%27🅐🅑🅒🅓hello%27);</script>'>
+                try this link to experiment get*Param functions
+            </a>
+        </p>
+    </div>
+    <script type="text/javascript">
+        cgHtmlUtils.getEl('aNiceSpan').innerHTML = 'it works !<br>';
+
+        function f1(a,b,c){
+            console.log('a : ', a , cgHtmlUtils.isNullOrUndefined(a))
+            console.log('b : ',b, cgHtmlUtils.isNullOrUndefined(b))
+            console.log('c : ',c , cgHtmlUtils.isNullOrUndefined(c))
+        }
+
+        f1('hello')
+        console.log('dateIso2Fr(\'2018-08-21\') = ', cgHtmlUtils.dateIso2Fr('2018-08-21'))
+        console.log(cgHtmlUtils.getParams('https://gomakethings.com?sandwhich=chicken%20salad&bread=wheat&quant=3'));
+        const testString = 'j&#39;adore	&#64;ller &#224; l&#39;&#233;cole&#174; ->🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩';
+
+        console.log(testString)
+        const convertedString = cgHtmlUtils.convertEnt(testString)
+        cgHtmlUtils.getEl('aNiceSpan').innerHTML += convertedString
+        console.log(convertedString);
+
+        const accentTest = `Il était parti au château de Saint-François.
+        Après cet été son intérêt pour ce "bâtiment" fut sans relâche`;
+        const unAccentTest = cgHtmlUtils.removePunctuation(cgHtmlUtils.removeDiacritics(accentTest));
+        console.log(unAccentTest)
+
+        cgHtmlUtils.addDiv('','params', 'container', 'panel panel-primary' );
+        cgHtmlUtils.addDiv('<h3 class="panel-title">parameter name is :</h3>','paramName', 'params', 'panel-heading' );
+        cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getStringParam('name','undefined')+'</p>','paramNameValue', 'params', 'panel-body' );
+
+        cgHtmlUtils.addDiv('','paramInteger', 'container', 'panel panel-primary' );
+        cgHtmlUtils.addDiv('<h3 class="panel-title">parameter myinteger is :</h3>','paramInt', 'paramInteger', 'panel-heading' );
+        cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getIntegerParam('myinteger',10)+'</p>','paramIntValue', 'paramInteger', 'panel-body' );
+
+        cgHtmlUtils.addDiv('','paramFloat', 'container', 'panel panel-primary' );
+        cgHtmlUtils.addDiv('<h3 class="panel-title">parameter myfloat is :</h3>','paramF', 'paramFloat', 'panel-heading' );
+        cgHtmlUtils.addDiv('<p>' + cgHtmlUtils.getFloatParam('myfloat',3.1415)+'</p>','paramFValue', 'paramFloat', 'panel-body' );
+
+    </script>
+</body>
+
+</html>

@@ -2,6 +2,7 @@
  * Created by cgil on 2017-01-02.
  *
  * v.2.0.0 : Migration to TypeScript on 2021-12-21.
+ * v.2.1.0 : Using vite on 2025-07-24.
  */
 // eslint-disable-next-line import/extensions,import/no-unresolved
 import { LIB_VERSION } from './version';
@@ -13,10 +14,10 @@ export const version = LIB_VERSION;
 
 /**
  * returns the Html Element that have the corresponding elementId
- * @param elemntId the id of the wanted html element
- * @returns the HTMLElement with the givven id
+ * @param elementId the id of the wanted html element
+ * @returns the HTMLElement with the given id
  */
-export const getEl = (elemntId: string): (HTMLElement | null) => document.getElementById(elemntId);
+export const getEl = (elementId: string): (HTMLElement | null) => document.getElementById(elementId);
 
 /**
  * check if the given f is a Function
@@ -130,7 +131,7 @@ export const dateIso2Fr = function (strIsoDate: string): string {
 
 /**
  * convert a date string from french europe dd-mm-yyyy to iso yyyy-mm-dd
- * @param strddmmyyyy string yyyy-mm-dd
+ * @param strFrDate string yyyy-mm-dd
  * @returns date as string in iso format yyyy-mm-dd
  */
 export const dateFr2Iso = function (strFrDate: string): string {
