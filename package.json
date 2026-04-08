@@ -1,6 +1,6 @@
 {
   "name": "cgil-html-utils",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "A utility library for HTML and DOM manipulation",
   "main": "dist/cgHtmlUtils.umd.js",
   "module": "dist/cgHtmlUtils.esm.js",
@@ -8,20 +8,17 @@
   "type": "module",
   "files": [
     "/dist",
-    "/examples",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
-    "build": "vite build",
-    "genver": "node -p \"'export const LIB_VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
-    "prebuild": "npm run clean && npm run genver",
-    "docs": "typedoc --out docs src/cgHtmlUtils.ts",
+    "build": "bun run build.ts",
+    "build2": "bun build src/index.ts --production --outfile=out.js",
+    "docs": "typedoc --options typedoc.json",
     "lint": "eslint src --ext .ts",
-    "clean": "rm -rf dist docs",
-    "prepublishOnly": "npm run build && npm run docs",
-    "test": "jest",
-    "test:watch": "jest --watchAll"
+    "prepublishOnly": "bun run build && bun run docs",
+    "test": "bun test",
+    "test:watch": "bun test --watch"
   },
   "repository": {
     "type": "git",
@@ -40,24 +37,10 @@
   },
   "homepage": "https://github.com/lao-tseu-is-alive/cgil-html-utils#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.8.0",
-    "@typescript-eslint/parser": "^8.8.0",
-    "eslint": "^9.12.0",
-    "typescript": "^5.6.2",
-    "typedoc": "^0.27.0",
-    "vite": "^7.1.11",
-    "vite-plugin-dts": "^4.2.3"
+    "@types/bun": "latest",
+    "typedoc": "^0.28.18"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/cgHtmlUtils.esm.js",
-      "require": "./dist/cgHtmlUtils.umd.js",
-      "types": "./dist/cgHtmlUtils.d.ts"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  "peerDependencies": {
+    "typescript": "^6.0.2"
+  }
 }
