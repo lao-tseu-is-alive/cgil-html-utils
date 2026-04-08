@@ -58,5 +58,5 @@ for (const file of typesToPrune) {
 }
 if (fs.existsSync(dtsPath)) {
   fs.renameSync(dtsPath, targetDtsPath);
-  console.log(`🐰 🏷️  Types renamed to ${targetDtsPath}`);
+  console.log(`🐰 🏷️ Types renamed to ${targetDtsPath}`);
 }
