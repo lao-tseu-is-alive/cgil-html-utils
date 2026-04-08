@@ -1,6 +1,6 @@
 {
   "name": "cgil-html-utils",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A utility library for HTML and DOM manipulation",
   "main": "dist/cgHtmlUtils.umd.js",
   "module": "dist/cgHtmlUtils.esm.js",

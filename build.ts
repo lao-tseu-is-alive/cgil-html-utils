@@ -6,9 +6,9 @@ const outputDir = "./dist";
 
 console.log(`🐰 🧹 Cleanup of old ${outputDir} content...`);
 await $`rm -rf ${outputDir}`;
-
+const now = new Date()
 const content = `export const LIB_VERSION = "${version}";\n
-export const BUILD_TIME = ${Date.now()};
+export const BUILD_TIME = "${now.toISOString()}";
 `;
 await write("src/version.ts", content);
 
