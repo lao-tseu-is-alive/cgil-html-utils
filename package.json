@@ -14,7 +14,7 @@
   "scripts": {
     "build": "bun run build.ts",
     "build2": "bun build src/index.ts --production --outfile=out.js",
-    "docs": "typedoc --options typedoc.json",
+    "docs": "bun x typedoc --options typedoc.json",
     "lint": "eslint src --ext .ts",
     "prepublishOnly": "bun run build && bun run docs",
     "test": "bun test",
