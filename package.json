@@ -37,6 +37,7 @@
   },
   "homepage": "https://github.com/lao-tseu-is-alive/cgil-html-utils#readme",
   "devDependencies": {
+    "@happy-dom/global-registrator": "^20.8.9",
     "@types/bun": "latest",
     "typedoc": "^0.28.18"
   },
